@@ -16,8 +16,12 @@ NEWSPIDER_MODULE = 'myspider.spiders'
 
 #启用pipelines
 ITEM_PIPELINES = {
-    'myspider.pipelines.DoubanPipeline':1,
+    'myspider.pipelines.MyImagesPipeline':1,
+    'myspider.pipelines.DoubanPipeline':100,
 }
+#是指图片路径
+IMAGES_STORE = '/home/gru/github/scrapy/myspider/img'
+IMAGES_EXPIRES = 90
 
 #设置user-agent、下载延迟
 DOWNLOAD_DELAY = 2

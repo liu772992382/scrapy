@@ -32,7 +32,6 @@ class MyCrawlSpider(CrawlSpider):
 
         item = MyspiderItem()
         item['title'] = response.xpath('//li[@class="active"]/a/text()').extract()
-        print 'counter!!!'
         return item
 
 
@@ -53,5 +52,5 @@ class Douban(CrawlSpider):
         item['title'] = response.xpath('//div[@class="pl2"]//a/@title').extract()
         item['info'] = response.xpath('//td[@valign="top"]/p/text()').extract()
         item['rating_nums'] = response.xpath('//div/span[@class="rating_nums"]/text()').extract()
-        print item['title']
+        item['image_urls'] = response.xpath('//a[@class="nbg"]/img/@src').extract()
         return item

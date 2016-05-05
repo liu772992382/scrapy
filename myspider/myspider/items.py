@@ -6,7 +6,6 @@
 # http://doc.scrapy.org/en/latest/topics/items.html
 
 import scrapy
-from model import *
 
 class MyspiderItem(scrapy.Item):
     # define the fields for your item here like:
@@ -19,3 +18,5 @@ class DoubanItem(scrapy.Item):
     info = scrapy.Field()
     title = scrapy.Field()
     rating_nums = scrapy.Field()
+    image_urls = scrapy.Field()
+    images = scrapy.Field()
