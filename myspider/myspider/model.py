@@ -18,6 +18,7 @@ class douban_book(Base):
     title = Column(String(50))
     info = Column(String(200))
     rating_nums = Column(String(5))
+    img_id = Column(String(100))
 
 # 初始化数据库连接:
 engine = create_engine('mysql+mysqldb://root:19951028liu@localhost:3306/scrapy?charset=utf8')
