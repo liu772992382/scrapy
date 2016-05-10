@@ -20,6 +20,21 @@ class douban_book(Base):
     rating_nums = Column(String(5))
     img_id = Column(String(100))
 
+
+#知乎关注关系数据表
+class zhihu_follow(Base):
+    __tablename__ = 'zhihu_follow'
+
+    id = Column(Integer,primary_key=True)
+    user = Column(String(100))
+    follower = Column(String(100))
+    type = Column(Integer)  #关注关系，1代表user被关注，0代表follower被关注，2代表相互关注
+
+    def Insert(self,data):  #data为(user,follower)
+
+
+
+
 # 初始化数据库连接:
 engine = create_engine('mysql+mysqldb://root:19951028liu@localhost:3306/scrapy?charset=utf8')
 # 创建DBSession类型:
