@@ -1,5 +1,6 @@
 from auth import *
 
+def followee_all()
 for i in xrange((followees_num - 1) / 20 + 1):
     if i == 0:
         user_url_list = soup.find_all("h2", class_="zm-list-content-title")

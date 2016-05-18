@@ -9,10 +9,10 @@ import re, json, cookielib
 import requests, termcolor
 
 
-mrequests = requests.Session()
-mrequests.cookies = cookielib.LWPCookieJar('cookies')
+requests = requests.Session()
+requests.cookies = cookielib.LWPCookieJar('cookies')
 try:
-    mrequests.cookies.load(ignore_discard=True)
+    requests.cookies.load(ignore_discard=True)
 except:
     pass
 
@@ -67,7 +67,7 @@ class AccountError(Exception):
 
 def download_captcha():
     url = "https://www.zhihu.com/captcha.gif"
-    r = mrequests.get(url, params={"r": random.random(), "type": "login"} )
+    r = requests.get(url, params={"r": random.random(), "type": "login"}, verify=False)
     if int(r.status_code) != 200:
         raise NetworkError(u"验证码请求失败")
     image_name = u"verify." + r.headers['content-type'].split("/")[1]
@@ -103,7 +103,7 @@ def download_captcha():
 
 def search_xsrf():
     url = "http://www.zhihu.com/"
-    r = mrequests.get(url)
+    r = requests.get(url, verify=False)
     if int(r.status_code) != 200:
         raise NetworkError(u"验证码请求失败")
     results = re.compile(r"\<input\stype=\"hidden\"\sname=\"_xsrf\"\svalue=\"(\S+)\"", re.DOTALL).findall(r.text)
@@ -140,7 +140,7 @@ def upload_form(form):
         'X-Requested-With': "XMLHttpRequest"
     }
 
-    r = mrequests.post(url, data=form, headers=headers)
+    r = requests.post(url, data=form, headers=headers, verify=False)
     if int(r.status_code) != 200:
         raise NetworkError(u"表单上传失败!")
 
@@ -170,7 +170,7 @@ def upload_form(form):
 def islogin():
     # check session
     url = "https://www.zhihu.com/settings/profile"
-    r = mrequests.get(url, allow_redirects=False)
+    r = requests.get(url, allow_redirects=False, verify=False)
     status_code = int(r.status_code)
     if status_code == 301 or status_code == 302:
         # 未登录
@@ -241,7 +241,7 @@ def login(account=None, password=None):
     elif "result" in result and result['result'] == True:
         # 登录成功
         Logging.success(u"登录成功！" )
-        mrequests.cookies.save()
+        requests.cookies.save()
         return True
 
 if __name__ == "__main__":

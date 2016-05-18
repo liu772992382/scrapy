@@ -7,6 +7,7 @@ from scrapy.linkextractors import LinkExtractor
 from scrapy.selector import Selector
 from scrapy.http import HtmlResponse
 from scrapy.crawler import CrawlerProcess
+from auth.py import *
 
 class ImgruSpider(scrapy.Spider):
     name = "imgru"
@@ -54,3 +55,10 @@ class Douban(CrawlSpider):
         item['rating_nums'] = response.xpath('//div/span[@class="rating_nums"]/text()').extract()
         item['image_urls'] = response.xpath('//a[@class="nbg"]/img/@src').extract()
         return item
+
+
+class Zhihu(CrawlSpider):
+    name = 'Zhihu'
+    start_urls = ['https://www.zhihu.com/people/liu-xiao-yu-5-83-32']
+    rules = (Rule(LinkExtractor( allow = (r'*.people*.followees')), callback = ),
+               Rule(LinkExtractor( alllow = (r'*.people*.followers')),callback = ))
