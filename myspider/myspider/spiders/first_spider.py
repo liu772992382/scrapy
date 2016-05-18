@@ -60,5 +60,9 @@ class Douban(CrawlSpider):
 class Zhihu(CrawlSpider):
     name = 'Zhihu'
     start_urls = ['https://www.zhihu.com/people/liu-xiao-yu-5-83-32']
+    process = CrawlerProcess({
+    'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
+})
+
     rules = (Rule(LinkExtractor( allow = (r'*.people*.followees')), callback = ),
                Rule(LinkExtractor( alllow = (r'*.people*.followers')),callback = ))

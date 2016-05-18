@@ -729,7 +729,7 @@ class User:
                     'Referer': "http://www.zhihu.com/"
                 }
                 r = requests.get(followee_url, headers=headers, verify=False)
-
+                print r
                 soup = BeautifulSoup(r.content, "lxml")
                 for i in xrange((followees_num - 1) / 20 + 1):
                     if i == 0:

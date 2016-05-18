@@ -20,3 +20,8 @@ class DoubanItem(scrapy.Item):
     rating_nums = scrapy.Field()
     image_urls = scrapy.Field()
     images = scrapy.Field()
+
+
+class ZhihuItem(scrapy.Item):
+    followers = scrapy.Field()
+    followees = scrapy.Field()
