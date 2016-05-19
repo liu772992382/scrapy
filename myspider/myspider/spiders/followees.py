@@ -1,5 +1,5 @@
 from auth import *
-
+'''
 def followee_all()
 for i in xrange((followees_num - 1) / 20 + 1):
     if i == 0:
@@ -30,3 +30,4 @@ for i in xrange((followees_num - 1) / 20 + 1):
             followee_soup = BeautifulSoup(followee_list[j], "lxml")
             user_link = followee_soup.find("h2", class_="zm-list-content-title").a
             yield User(user_link["href"], user_link.string.encode("utf-8"))
+'''

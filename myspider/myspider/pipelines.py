@@ -46,6 +46,6 @@ class MyImagesPipeline(ImagesPipeline):
 
 
 
-class ZhihuPipeline(object):
+#class ZhihuPipeline(object):
 
-    def __intit__
+    #def __intit__

@@ -141,6 +141,7 @@ def upload_form(form):
     }
 
     r = requests.post(url, data=form, headers=headers, verify=False)
+    print form
     if int(r.status_code) != 200:
         raise NetworkError(u"表单上传失败!")
 

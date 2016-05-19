@@ -30,7 +30,7 @@ class zhihu_follow(Base):
     follower = Column(String(100))
     type = Column(Integer)  #关注关系，1代表user被关注，0代表follower被关注，2代表相互关注
 
-    def Insert(self,data):  #data为(user,follower)
+    #def Insert(self,data):  #data为(user,follower)
 
 
 
