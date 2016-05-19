@@ -64,5 +64,20 @@ class Zhihu(CrawlSpider):
     'USER_AGENT': 'Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 5.1)'
 })
 
-    rules = (Rule(LinkExtractor( allow = (r'*.people*.followees')), callback = ),
-               Rule(LinkExtractor( alllow = (r'*.people*.followers')),callback = ))
+    rules = (Rule(LinkExtractor( allow = (r'.*people.*followees')), callback = followee_parse),
+            Rule(LinkExtractor( alllow = (r'.*people.*followers')),callback = follower_parse))
+
+    def followee_parse(self,response):
+        self.logger.info('Followee : %s',response.url)
+
+        item = ZhihuItem()
+        item['followees'] = response.xpath('//a[@class="zg-link"]/@href').extract()
+        return item
+
+
+    def follower_parse(self,response):
+        self.logger.info('Follower : %s',response.url)
+
+        item = ZhihuItem()
+        item['followers'] = response.xpath('//a[@class="zg-link"]/@href').extract()
+        return item

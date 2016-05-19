@@ -43,3 +43,9 @@ class MyImagesPipeline(ImagesPipeline):
     #         raise DropItem("Item contains no images")
     #     item['image_paths'] = image_paths
     #     return item
+
+
+
+class ZhihuPipeline(object):
+
+    def __intit__
