@@ -9,6 +9,16 @@ Base = declarative_base()
 # 获取元数据
 metadata = MetaData()
 # 定义User对象:
+
+class douban_movie(Base):
+    __tablename__ = 'douban_movie'
+
+    id = Column(Integer, primary_key = True)
+    name = Column(String(300))
+    rating_nums = Column(String(5))
+    url = Column(String(500))
+
+
 class douban_book(Base):
     # 表的名字:
     __tablename__ = 'douban_book'

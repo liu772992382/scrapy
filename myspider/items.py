@@ -22,6 +22,12 @@ class DoubanItem(scrapy.Item):
     images = scrapy.Field()
 
 
+class DoubanMovieItem(scrapy.Item):
+    name = scrapy.Field()
+    rating_nums = scrapy.Field()
+    url = scrapy.Field()
+
+
 class ZhihuItem(scrapy.Item):
     followers = scrapy.Field()
     followees = scrapy.Field()

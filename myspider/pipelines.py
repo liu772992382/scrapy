@@ -31,6 +31,31 @@ class DoubanPipeline(object):
         return item
 
 
+class DoubanMoviePipeline(object):
+
+    def __init__(self):
+        self.session = DBSession()
+
+    def process_item(self, item, spider):
+        for i in range(len(item['name'])):
+            movie = douban_movie()
+            movie.name = item['name'][i]#.encode('utf-8')
+            movie.url = item['url'][i]
+            if item['rating_nums'][i] == None or item['rating_nums'][i] == u'(尚未上映)' or item['rating_nums'][i] == u'(评价人数不足)':
+                movie.rating_nums = '0.0'
+            else:
+                movie.rating_nums = item['rating_nums'][i]
+            # book.img_id = hashlib.sha1(item['image_urls'][0]).hexdigest()
+            self.session.add(movie)
+        try:
+            self.session.commit()
+        except:
+            self.session.rollback()
+        finally:
+            self.session.close()  # optional, depends on use case
+        return item
+
+
 
 
 class MyImagesPipeline(ImagesPipeline):
